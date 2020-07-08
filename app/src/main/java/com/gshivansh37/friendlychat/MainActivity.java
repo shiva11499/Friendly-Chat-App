@@ -125,8 +125,11 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
-                    Toast.makeText(MainActivity.this, "You're now signed in. Welcome to FriendlyChat.", Toast.LENGTH_SHORT).show();
+                    // User is signed in
+                    onSignedInInitialize(user.getDisplayName());
                 } else {
+                    // User is signed out
+                    onSignedOutCleanup();
                     startActivityForResult(
                             AuthUI.getInstance()
                                     .createSignInIntentBuilder()
@@ -197,12 +200,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+        mUsername = username;
+        attachDatabaseReadListener();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        mMessageAdapter.clear();
+        detachDatabaseReadListener();
     }
 
     @Override
