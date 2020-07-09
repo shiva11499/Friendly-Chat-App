@@ -95,18 +95,6 @@ public class MainActivity extends AppCompatActivity {
         mMessageAdapter = new MessageAdapter(this, R.layout.item_message, friendlyMessages);
         mMessageListView.setAdapter(mMessageAdapter);
 
-//        // Send button sends a message and clears the EditText
-//        mSendButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                FriendlyMessage friendlyMessage = new FriendlyMessage(mMessageEditText.getText().toString(), mUsername, null);
-//
-//
-//                // Clear input box
-//                mMessageEditText.setText("");
-//            }
-//        });
-
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
