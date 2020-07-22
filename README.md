@@ -1,2 +1,5 @@
 # FriendlyChat-App
-A chat-app with an integrated real-time database and uses Firebase features.
+A chat-app with the use of Firebase and its different features. 
+- Uses realtime-database for storing messages
+- Uses FirebaseUI for Google, Facebook Sign In
+- Uses FireBase Notifications and Storage features 
